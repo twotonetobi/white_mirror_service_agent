@@ -45,7 +45,7 @@ start_rs11.bat
 ```
 11_0_ServiceAgent/
 ├── main.py                     # Entry point
-├── config.yaml                 # Configuration (auto-detected per platform)
+├── config.yaml.example         # Configuration template (copy to config.yaml)
 ├── requirements.txt            # Python dependencies
 │
 ├── start.sh                    # macOS/Linux startup script
@@ -78,6 +78,12 @@ start_rs11.bat
 ```
 
 ## Configuration
+
+**First time setup:** Copy `config.yaml.example` to `config.yaml` and edit with your settings:
+```bash
+cp config.yaml.example config.yaml
+# Edit config.yaml with your service_folders and API keys
+```
 
 The agent auto-detects your platform and machine ID, then looks for configuration in this order:
 
