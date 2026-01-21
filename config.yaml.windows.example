@@ -1,0 +1,35 @@
+machine_id: "windows-workstation"
+machine_name: "Windows GPU Workstation"
+machine_description: "Windows PC with NVIDIA GPU for AI generation services"
+
+agent:
+  port: 9100
+  host: "0.0.0.0"
+  log_level: "INFO"
+
+service_folders:
+  - "D:\\WhiteMirror\\services"
+  - "C:\\Users\\YourName\\Projects\\11_ComfyUI_Bridge"
+  - "C:\\Users\\YourName\\Projects\\11_ChatterboxTTS"
+  - "C:\\Users\\YourName\\Projects\\11_SunoAPIBridge"
+  - "C:\\Users\\YourName\\Projects\\11_VideoAPIBridge"
+
+always_running: []
+
+resources:
+  gpu_vram_reserve_gb: 2
+  ram_reserve_gb: 4
+  monitor_interval_seconds: 30
+
+llm:
+  provider: "openrouter"
+  model: "google/gemini-3-flash-preview"
+
+health_check:
+  enabled: true
+  interval_seconds: 60
+  timeout_seconds: 5
+
+ui:
+  enabled: true
+  share: false

@@ -1,0 +1,41 @@
+[Unit]
+Description=White Mirror Service Agent
+Documentation=https://github.com/whitemirror/service-agent
+After=network.target
+
+[Service]
+Type=simple
+User=whitemirror
+Group=whitemirror
+WorkingDirectory=/opt/whitemirror/service-agent
+Environment=PYTHONUNBUFFERED=1
+Environment=PATH=/opt/whitemirror/service-agent/venv/bin:/usr/local/bin:/usr/bin:/bin
+
+# Main process
+ExecStart=/opt/whitemirror/service-agent/venv/bin/python main.py
+
+# Restart policy
+Restart=on-failure
+RestartSec=10
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+# Security hardening
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ReadWritePaths=/opt/whitemirror/service-agent
+ReadWritePaths=/var/log/whitemirror
+
+# Resource limits
+MemoryMax=2G
+CPUQuota=200%
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=service-agent
+
+[Install]
+WantedBy=multi-user.target

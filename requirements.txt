@@ -1,0 +1,37 @@
+# White Mirror Service Agent - Dependencies
+# Python 3.10+ required
+
+# Web Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+
+# UI
+gradio>=4.0.0
+
+# HTTP Client
+httpx>=0.26.0
+
+# Configuration & Data
+pyyaml>=6.0
+pydantic>=2.0.0
+pydantic-settings>=2.0.0
+python-dotenv>=1.0.0
+
+# System Monitoring
+psutil>=5.9.0
+
+# GPU Monitoring (NVIDIA - platform conditional)
+pynvml>=11.5.0; platform_system=="Linux" or platform_system=="Windows"
+
+# LLM Integration
+litellm>=1.0.0
+
+# File Watching
+watchdog>=3.0.0
+
+# Async utilities
+anyio>=4.0.0
+
+# Testing (dev)
+pytest>=7.0.0
+pytest-asyncio>=0.21.0

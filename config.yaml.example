@@ -1,0 +1,71 @@
+# White Mirror Service Agent - Configuration
+# Copy this file to config.yaml and customize for your machine
+
+# ============================================================================
+# MACHINE IDENTITY
+# ============================================================================
+machine_id: "my-workstation"              # REQUIRED: Unique identifier for this machine
+machine_name: "My Workstation"            # Human-readable name
+machine_description: "Development machine for White Mirror services"
+
+# ============================================================================
+# AGENT SETTINGS
+# ============================================================================
+agent:
+  port: 9100                              # Port for REST API and Gradio UI
+  host: "0.0.0.0"                         # Listen address (0.0.0.0 for all interfaces)
+  log_level: "INFO"                       # DEBUG, INFO, WARNING, ERROR
+  log_file: null                          # Optional: path to log file
+
+# ============================================================================
+# SERVICE FOLDERS
+# ============================================================================
+# List of directories to scan for services
+# Each subfolder should contain a service with README.md or main.py
+service_folders:
+  - "./services"                          # Relative paths supported
+  # - "D:/white_mirror_services"          # Windows absolute path
+  # - "/home/user/services"               # Linux/Mac absolute path
+
+# ============================================================================
+# ALWAYS RUNNING SERVICES
+# ============================================================================
+# Services to auto-start when agent starts
+# Use service_id (folder name, lowercased) as identifier
+always_running: []
+  # - "comfyui_bridge"
+  # - "tts_bridge"
+
+# ============================================================================
+# RESOURCE MANAGEMENT
+# ============================================================================
+resources:
+  gpu_vram_reserve_gb: 2                  # Always keep this much VRAM free
+  ram_reserve_gb: 4                       # Always keep this much RAM free
+  monitor_interval_seconds: 30            # How often to check resources
+
+# ============================================================================
+# LLM CONFIGURATION (for parsing service folders)
+# ============================================================================
+llm:
+  provider: "openrouter"                  # Only openrouter supported currently
+  model: "google/gemini-3-flash-preview"  # Fast, capable model for parsing
+  api_key: null                           # Set via OPENROUTER_API_KEY env var
+  timeout_seconds: 120                    # Longer timeout for full folder analysis
+  max_retries: 3
+
+# ============================================================================
+# HEALTH CHECK SETTINGS
+# ============================================================================
+health_check:
+  enabled: true
+  interval_seconds: 60                    # How often to ping running services
+  timeout_seconds: 5                      # Timeout for health check requests
+
+# ============================================================================
+# UI SETTINGS
+# ============================================================================
+ui:
+  enabled: true                           # Enable Gradio UI
+  share: false                            # Create public Gradio link (not recommended)
+  auth: null                              # Optional: [["username", "password"]]
