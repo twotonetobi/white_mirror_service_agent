@@ -43,6 +43,7 @@ node_modules/
 .npm-cache/
 
 # Machine-specific configs (keep examples)
+config.yaml
 config.*.yaml
 !config.yaml.example
 !config.yaml.windows.example
